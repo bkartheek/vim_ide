@@ -1,23 +1,9 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
+set path+=**
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set number          
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-airline/vim-airline'
-
-filetype plugin indent on 
-let NERDTreeShowHidden=1
-nmap <leader>n :NERDTreeToggle<CR>
-autocmd VimEnter * NERDTree
-let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
-autocmd VimEnter * wincmd p
-
-set number
 set cindent
 set autoindent
 set shiftwidth=4
@@ -29,9 +15,10 @@ set backspace=indent,eol,start
 set nobackup
 set nowb
 set noswapfile
-set encoding=utf8
 
+set encoding=utf8
 set ffs=unix,dos,mac
+
 set wildmenu
 set wildignore=*.o,*~,*.pyc
 
@@ -60,3 +47,20 @@ autocmd BufReadPost *
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-airline/vim-airline'
+
+filetype plugin indent on 
+let NERDTreeShowHidden=1
+nmap <leader>n :NERDTreeToggle<CR>
+autocmd VimEnter * NERDTree
+let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
+autocmd VimEnter * wincmd p
+
