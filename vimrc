@@ -1,8 +1,17 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
+" Search path automatic 
 set path+=**
-
+" line Numbers
 set number          
+" C+x C+n search term in the sam file
+" C+x C+f search in file names in local directory
+" C+n searcg the word anywhere in the system
+" 
+"Alternate menu items to look into
+set wildmenu
+set wildignore=*.o,*~,*.pyc
+
 
 set cindent
 set autoindent
@@ -18,9 +27,6 @@ set noswapfile
 
 set encoding=utf8
 set ffs=unix,dos,mac
-
-set wildmenu
-set wildignore=*.o,*~,*.pyc
 
 set autoread
 set history=700
@@ -48,14 +54,19 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-airline/vim-airline'
+call plug#begin('~/.vim/plugged')
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+call plug#end()
+ 
+" :PlugUpdate
 
 filetype plugin indent on 
 let NERDTreeShowHidden=1
