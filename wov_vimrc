@@ -1,14 +1,8 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
-" Search path automatic
+set nocompatible   
+let mapleader=" " 
+filetype off                   
 set path+=**
-" line Numbers
 set number
-" C+x C+n search term in the sam file
-" C+x C+f search in file names in local directory
-" C+n searcg the word anywhere in the system
-"
-"Alternate menu items to look into
 set wildmenu
 set wildignore=*.o,*~,*.pyc
 
@@ -47,7 +41,7 @@ set history=700
 set ignorecase
 set smartcase
 set hlsearch
-"set nohlsearch
+nmap <leader><space> :nohlsearch<CR>
 set lazyredraw
 set magic
 set showmatch
