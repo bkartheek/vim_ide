@@ -1,22 +1,66 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+" Search path automatic
 set path+=**
 " line Numbers
-set number          
+set number
 " C+x C+n search term in the sam file
 " C+x C+f search in file names in local directory
 " C+n searcg the word anywhere in the system
-" 
+"
 "Alternate menu items to look into
 set wildmenu
 set wildignore=*.o,*~,*.pyc
-set nobackup
-set nowb
-set noswapfile
+
+" Indentation
+set cindent
+set autoindent
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+set backspace=indent,eol,start
+
+" Save temporary/backup files not in the local directory, but in your ~/.vim
+" directory, to keep them out of git repos.
+" But first mkdir backup, swap, and undo first to make this work
+call system('mkdir ~/.vim')
+call system('mkdir ~/.vim/backup')
+call system('mkdir ~/.vim/swap')
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    call system('mkdir ~/.vim/undo')
+    set undodir=~/.vim/undo//
+    set undofile
+    set undolevels=1000
+    set undoreload=10000
+endif
 
 set encoding=utf8
 set ffs=unix,dos,mac
-
 set autoread
 set history=700
+
+set ignorecase
+set smartcase
+set hlsearch
+"set nohlsearch
+set lazyredraw
+set magic
+set showmatch
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+filetype plugin on
+filetype indent on
+syntax enable
+
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
@@ -29,40 +73,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
-
+" :PlugInstall to install new plugins
 call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/syntastic'
-Plug 'vim-ruby/vim-ruby'
-Plug 'stanangeloff/php.vim'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
-Plug 'altercation/vim-colors-solarized'
 call plug#end()
-" TAGBAR
-nmap <F8> :TagbarToggle<CR> 
-" VIM SOLARIZED
-let g:solarized_termcolors=256
-syntax enable
-set background=dark
-colorscheme solarized
 
-"NERD TREE
-filetype plugin indent on 
-nmap <leader>n :NERDTreeToggle<CR>
+" :PlugUpdate
+nmap <F8> :TagbarToggle<CR>
+filetype plugin indent on
+let NERDTreeShowHidden=1
+nmap <silent>Z :NERDTreeToggle<CR>
+map <silent>z :NERDTreeFocus<CR>
 let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
 autocmd VimEnter * wincmd p
-
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
