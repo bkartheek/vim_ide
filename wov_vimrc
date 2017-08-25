@@ -5,8 +5,6 @@ set path+=**
 set number
 set wildmenu
 set wildignore=*.o,*~,*.pyc
-
-" Indentation
 set cindent
 set autoindent
 set shiftwidth=2
@@ -14,30 +12,10 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 set backspace=indent,eol,start
-
-" Save temporary/backup files not in the local directory, but in your ~/.vim
-" directory, to keep them out of git repos.
-" But first mkdir backup, swap, and undo first to make this work
-call system('mkdir ~/.vim')
-call system('mkdir ~/.vim/backup')
-call system('mkdir ~/.vim/swap')
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-
-" Keep undo history across sessions by storing it in a file
-if has('persistent_undo')
-    call system('mkdir ~/.vim/undo')
-    set undodir=~/.vim/undo//
-    set undofile
-    set undolevels=1000
-    set undoreload=10000
-endif
-
 set encoding=utf8
 set ffs=unix,dos,mac
 set autoread
 set history=700
-
 set ignorecase
 set smartcase
 set hlsearch
@@ -45,9 +23,9 @@ nmap <leader><space> :nohlsearch<CR>
 set lazyredraw
 set magic
 set showmatch
-
 set noerrorbells
 set novisualbell
+
 set t_vb=
 set tm=500
 
@@ -55,30 +33,31 @@ filetype plugin on
 filetype indent on
 syntax enable
 
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-" Remember info about open buffers on close
-set viminfo^=%
-
+" Vim Plug Install
+" This will create folder required to install plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
+" Run the following, when new plugin is added
 " :PlugInstall to install new plugins
 call plug#begin('~/.vim/plugged')
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'vim-airline/vim-airline'
 call plug#end()
 
-" :PlugUpdate
-nmap <F8> :TagbarToggle<CR>
-filetype plugin indent on
-let NERDTreeShowHidden=1
-nmap <silent>Z :NERDTreeToggle<CR>
-map <silent>z :NERDTreeFocus<CR>
-let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
-autocmd VimEnter * wincmd p
+" NERDTree Settings
+  let NERDTreeShowHidden=1
+  nmap <leader>z :NERDTreeToggle<CR>
+  let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
+  autocmd VimEnter * wincmd p
+
+nnoremap <leader><Right> <c-w>l
+nnoremap <leader><Left> <c-w>h
+nnoremap <leader><Up> <c-w>k
+nnoremap <leader><Down> <c-w>
+
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
