@@ -1,5 +1,5 @@
 set nocompatible   
-let mapleader=" " 
+let mapleader=" "  
                    
 set path+=**
 set number
@@ -43,6 +43,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " NERDTree Settings
@@ -51,12 +52,15 @@ call plug#end()
   let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
   autocmd VimEnter * wincmd p
 
-nnoremap <leader><Right> <c-w>l
-nnoremap <leader><Left> <c-w>h
-nnoremap <leader><Up> <c-w>k
-nnoremap <leader><Down> <c-w>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>w :w<CR>
+nnoremap <leader><Right> <c-w>l       "Move to Right Window
+nnoremap <leader><Left> <c-w>h        "Move to Left Window
+nnoremap <leader><Up> <c-w>k          "Move to Top Window
+nnoremap <leader><Down> <c-w>         "Move to Down Window
+nnoremap <leader>q :q<CR>             "Quit the Current Window
+nnoremap <leader>s :w<CR>             "Save the file
+nnoremap <leader>n :bnext<CR>         "Move to next Buffer
+nnoremap <leader>p :bprevious<CR>     "Move to previous Buffer
+nnoremap <leader>c :bd<CR>            "Close the current buffer
 
 " Save temporary/backup files not in the local directory, but in your ~/.vim
 " directory, to keep them out of git repos.
@@ -82,12 +86,3 @@ autocmd BufReadPost *
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
-
-" allows cursor change in tmux mode
- if exists('$TMUX')
-   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  else
-   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
- endif
