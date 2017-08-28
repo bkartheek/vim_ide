@@ -33,7 +33,6 @@ endif
 
 " General Settings
   set nocompatible   
-  let mapleader=" "                
   set encoding=utf8
   set ffs=unix,dos,mac
   set autoread
@@ -97,14 +96,15 @@ call plug#end()
   let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
   autocmd VimEnter * wincmd p
 
-nnoremap <silent><leader><Right> <c-w>l                 "Move to Right Window
-nnoremap <silent><leader><Left> <c-w>h                  "Move to Left Window
-nnoremap <silent><leader><Up> <c-w>k                    "Move to Top Window
-nnoremap <silent><leader><Down> <c-w>                   "Move to Down Window
-nnoremap <silent><leader>q :q<CR>                       "Quit the Current Window
-nnoremap <silent><leader>s :w<CR>                       "Save the file
-nnoremap <silent><leader>n :bnext<CR>                   "Move to next Buffer
-nnoremap <silent><leader>p :bprevious<CR>               "Move to previous Buffer
-nnoremap <silent><leader>c :bd<CR>                      "Close the current buffer
-nnoremap <silent><leader>l :set number!<CR>             " Invert Line Numbers
-nnoremap <silent><BS> za                                " space open/closes folds
+"nnoremap <silent><leader><Right> <c-w>l                 "Move to Right Window
+"nnoremap <silent><leader><Left> <c-w>h                  "Move to Left Window
+"nnoremap <silent><leader><Up> <c-w>k                    "Move to Top Window
+"nnoremap <silent><leader><Down> <c-w>                   "Move to Down Window
+"nnoremap <silent><leader>q :q<CR>                       "Quit the Current Window
+"nnoremap <silent><leader>s :w<CR>                       "Save the file
+"nnoremap <silent><leader>n :bnext<CR>                   "Move to next Buffer
+"nnoremap <silent><leader>p :bprevious<CR>               "Move to previous Buffer
+"nnoremap <silent><leader>c :bd<CR>                      "Close the current buffer
+"nnoremap <silent><leader>l :set number!<CR>             " Invert Line Numbers
+nnoremap <silent> <Space> za
+
