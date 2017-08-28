@@ -32,14 +32,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " General Settings
-  set nocompatible   
+  set nocompatible 
+  filetype off
+  set number  
   set encoding=utf8
   set ffs=unix,dos,mac
   set autoread
   set history=1000
-  filetype plugin on
-  filetype indent on
-  syntax enable
   set noerrorbells
   set novisualbell
 
@@ -75,6 +74,10 @@ endif
   set foldmethod=indent        " fold based on indent level
   set showmatch
 
+  filetype plugin on
+  filetype indent on
+  syntax enable
+
 " Run the following, when new plugin is added
 " :PlugInstall to install new plugins
 call plug#begin('~/.vim/plugged')
@@ -92,7 +95,8 @@ call plug#end()
 
 " NERDTree Settings
   let NERDTreeShowHidden=1
-  nmap <leader>z :NERDTreeToggle<CR>
+  nmap <silent>Z :NERDTreeToggle<CR>
+  map <silent>z :NERDTreeFocus<CR>
   let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
   autocmd VimEnter * wincmd p
 
