@@ -96,8 +96,10 @@ call plug#end()
 
 " NERDTree Settings
   let NERDTreeShowHidden=1
-  nmap <silent>Z :NERDTreeToggle<CR>
-  map <silent>z :NERDTreeFocus<CR>
+  let g:NERDTreeMapActivateNode="<F3>"
+  let g:NERDTreeMapPreview="<F4>"
+  map <F2> :NERDTreeToggle<CR>
+  map <F3> :NERDTreeFocus<CR>
   let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
   autocmd VimEnter * wincmd p
 
