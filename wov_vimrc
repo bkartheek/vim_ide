@@ -103,7 +103,7 @@ call plug#end()
   map <F3> :NERDTreeFocus<CR>
   let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
   autocmd VimEnter * wincmd p
-" Kartjheeek
+
 nnoremap <silent><leader><Right> <c-w>l<CR>
 nnoremap <silent><leader><Left> <c-w>h <CR>
 nnoremap <silent><leader><Up> <c-w>k<CR>  
