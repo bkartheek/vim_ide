@@ -42,6 +42,7 @@ endif
   set noerrorbells
   set novisualbell
   let mapleader = "\<Space>"  
+  nnoremap <silent> <Space><Space> za
 
 " Search Settings
   set path+=**
@@ -87,6 +88,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-git'
 call plug#end()
 
 " CtrlP Settings
@@ -104,15 +106,17 @@ call plug#end()
   let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
   autocmd VimEnter * wincmd p
 
+" Buffer Navigation and Management
 nnoremap <silent><leader><Right> <c-w>l<CR>
 nnoremap <silent><leader><Left> <c-w>h <CR>
 nnoremap <silent><leader><Up> <c-w>k<CR>  
 nnoremap <silent><leader><Down> <c-w>j<CR>
-nnoremap <silent><leader>q :q<CR>                
-nnoremap <silent><leader>s :w<CR>                 
 nnoremap <silent><leader>n :bnext<CR>              
 nnoremap <silent><leader>p :bprevious<CR>           
 nnoremap <silent><leader>c :bd<CR>                    
 nnoremap <silent><leader>l :set number!<CR>            
-nnoremap <silent> <Space><Space> za
+
+" Easy Shortcuts
+nnoremap <silent><leader>q :q<CR>                
+nnoremap <silent><leader>s :w<CR>                 
 
