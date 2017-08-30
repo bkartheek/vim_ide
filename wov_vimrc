@@ -65,7 +65,7 @@ endif
   set ignorecase
   set smartcase
   set hlsearch
-  nmap <leader><space> :nohlsearch<CR>
+  nmap <leader>f :nohlsearch<CR>
   set lazyredraw
   set magic
 
@@ -74,7 +74,7 @@ endif
   set foldenable               " enable folding
   set foldlevelstart=10        " open most folds by default
   set foldnestmax=10           " 10 nested fold max
-  set foldmethod=indent        " fold based on indent level
+  set foldmethod=syntax        " fold based on indent level
   set showmatch
 
   filetype plugin on
@@ -89,6 +89,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-git'
+  Plug 'vim-syntastic/syntastic'
+  Plug 'pangloss/vim-javascript'
 call plug#end()
 
 " CtrlP Settings
@@ -105,6 +107,15 @@ call plug#end()
   map <F3> :NERDTreeFocus<CR>
   let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
   autocmd VimEnter * wincmd p
+
+" Syntastic Settings
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 
 " Buffer Navigation and Management
 nnoremap <silent><leader><Right> <c-w>l<CR>
